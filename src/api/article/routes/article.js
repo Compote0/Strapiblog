@@ -8,10 +8,18 @@ const { createCoreRouter } = require('@strapi/strapi').factories;
 
 module.exports = createCoreRouter('api::article.article', {
     routes: [
+        {
+        method: 'GET',
+        path: '/articles',
+        handler: 'article.find',
+        config: {
+          policies: []
+        }
+      },
       {
         method: 'GET',
         path: '/search/:term',
-        handler: 'article.custom.search',
+        handler: 'article.search',
         config: {
           policies: []
         }
@@ -19,7 +27,7 @@ module.exports = createCoreRouter('api::article.article', {
       {
         method: 'GET',
         path: '/:id/related',
-        handler: 'article.custom.related',
+        handler: 'article.related',
         config: {
           policies: []
         }
